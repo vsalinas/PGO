@@ -6,9 +6,9 @@ Part 1: The Data Scientist
 
 Your job is to do data science and discover interesting things from a data file you download.
 
-This is the link to the data file we will be using: ""
+This is the link to the data file we will be using: "https://www.kaggle.com/datasets/mathurinache/sleep-dataset?resource=download"
 
-Tasks:
+-Tasks:
   1.Find our data file through kaggle
   2. Import CSV file into C++ program
   3. do something fun/intersting with the data that will take 10 seconds to 1 minute to run
