@@ -1,11 +1,11 @@
 # PGO
 CSCI 45: Profile Guided Optimization Project
 
--------------------------------------------------------------------------------------------------------------------
+================================================================================
+
 Part 1: The Data Scientist
 
 Your job is to do data science and discover interesting things from a data file you download.
-
 This is the link to the data file we will be using: "https://www.kaggle.com/datasets/mathurinache/sleep-dataset?resource=download"
 
 -Tasks:
@@ -21,7 +21,8 @@ This is the link to the data file we will be using: "https://www.kaggle.com/data
     b. Down below when there are examples of how to compile a simple program with just main.cc in it, you will need to incorporate those into the Makefile.
     c. Your partners can edit and revise the Makefile as well.
   7. Write up things you find interesting about your data analysis and send it to the Instrumenter for their report.
--------------------------------------------------------------------------------------------------------------------
+================================================================================
+
 Part 2: The Tester
 
 1. Get gcov to work:
@@ -37,7 +38,8 @@ Part 2: The Tester
 4. Generate an HTML version of your Gcov report and attach it in the report of the Instrumenter.
 5. If you find bugs in the code, report them to the Data Scientist to fix.
 
--------------------------------------------------------------------------------------------------------------------
+================================================================================
+
 Part 3: The Instrumenter
 
 1. Collect the timing data for each part of the code and write a report that will be submitted on Canvas showing how long the program takes to run with all the different options of:
@@ -53,7 +55,8 @@ Part 3: The Instrumenter
 3. For each of these optimization options, report how long the most important loop in your code takes to run. You can either time the loop using the C way with clock() or the C++ way with chrono.
 4. For any important branches inside of the for loop, try using the [[likely]] or [[unlikely]] tags and see if that affects the running time. This is optimization option G above.
 
--------------------------------------------------------------------------------------------------------------------
+================================================================================
+
 Part 4: The Pogo Stick
 
 This person will do the profile guided optimization (PGO), perfing, and LTO
