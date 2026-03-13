@@ -25,6 +25,8 @@ int importFile(const string& filename, SleepData arr[], int size){
         SleepData d;
         string temp;
 
+        getline(ss, temp, ','); //Person ID gets ignored
+
         getline(ss, d.gender, ',');
         getline(ss, temp, ',');
         d.age = stoi(temp);
