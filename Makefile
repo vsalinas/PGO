@@ -1,23 +1,43 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -O2
-
-OBJS = main.o importData.o assessData.o
-
+SRC = main.cc importData.cc assessData.cc
+OBJS = $(SRC:.cc=.o)
 TARGET = PGO
+
+#Default flags and build
+CXXFLAGS = -std=c++17 -Wall -Wextra
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+    $(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
-main.o: main.cc importData.h assessData.h
-	$(CXX) $(CXXFLAGS) -c main.cc
+%.o: %.cc
+    $(CXX) $(CXXFLAGS) -c $<
 
-importData.o: importData.cc importData.h sleepData.h
-	$(CXX) $(CXXFLAGS) -c importData.cc
+# Optimization: -O3
+o3:
+    $(MAKE) CXXFLAGS="$(CXXFLAGS) -O3" clean all
 
-assessData.o: assessData.cc assessData.h sleepData.h
-	$(CXX) $(CXXFLAGS) -c assessData.cc
+# Link-Time Optimization
+lto:
+    $(MAKE) CXXFLAGS="$(CXXFLAGS) -O3 -flto" clean all
 
+# GCov (Code Coverage)
+gcov:
+    $(MAKE) CXXFLAGS="$(CXXFLAGS) -fprofile-arcs -ftest-coverage" \
+        LDFLAGS="--coverage" clean all
+
+# PGO: Generate profile data
+pgo-generate:
+    $(MAKE) CXXFLAGS="$(CXXFLAGS) -O3 -fprofile-generate" \
+        LDFLAGS="-fprofile-generate" clean all
+
+# PGO: Use profile data
+pgo-use:
+    $(MAKE) CXXFLAGS="$(CXXFLAGS) -O3 -fprofile-use -fprofile-correction" \
+        LDFLAGS="-fprofile-use" clean all
+
+# Clean
 clean:
-	rm -f *.o $(TARGET)
+    rm -f $(OBJS) $(TARGET)
+    rm -f *.gcda *.gcno *.gcov
