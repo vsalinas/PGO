@@ -3,13 +3,15 @@ SRC = main.cc importData.cc assessData.cc
 OBJS = $(SRC:.cc=.o)
 TARGET = PGO
 
-#Default flags and build
+# Default flags
 CXXFLAGS = -std=c++17 -Wall -Wextra
+LDFLAGS =
 
+# Default build
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-    $(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+    $(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(TARGET) $(OBJS)
 
 %.o: %.cc
     $(CXX) $(CXXFLAGS) -c $<
@@ -20,7 +22,8 @@ o3:
 
 # Link-Time Optimization
 lto:
-    $(MAKE) CXXFLAGS="$(CXXFLAGS) -O3 -flto" clean all
+    $(MAKE) CXXFLAGS="$(CXXFLAGS) -O3 -flto" \
+        LDFLAGS="-flto" clean all
 
 # GCov (Code Coverage)
 gcov:
