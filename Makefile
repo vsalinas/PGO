@@ -1,7 +1,7 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -02
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 
-OBJS = main.o importData.o assessData.O
+OBJS = main.o importData.o assessData.o
 
 TARGET = program
 
@@ -20,4 +20,4 @@ assessData.o: assessData.cc assessData.h sleepData.h
 	$(CXX) $(CXXFLAGS) -c assessData.cc
 
 clean:
-rm -f *.o $(TARGET)
+	rm -f *.o $(TARGET)

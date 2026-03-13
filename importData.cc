@@ -7,7 +7,7 @@
 using namespace std;
 
 
-int importFile(string& filename, SleepData arr[], int size){
+int importFile(const string& filename, SleepData arr[], int size){
     ifstream file(filename);
     if(!file.is_open()){
         cout << "Unable to open file\n";
@@ -40,6 +40,17 @@ int importFile(string& filename, SleepData arr[], int size){
 
         getline(ss, temp, ',');
         d.stressLevel = stoi(temp);
+
+        string skip;
+
+
+        //unused data
+        getline(ss, skip, ','); // BMI
+        getline(ss, skip, ','); // Blood Pressure
+        getline(ss, skip, ','); // Heart Rate
+        getline(ss, skip, ','); // Daily Steps
+        getline(ss, skip, ','); // Sleep Disorder
+
 
         arr[count++] = d;
 
