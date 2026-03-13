@@ -5,8 +5,8 @@
 #include "sleepData.h"
 using namespace std;
 
-//importing file
-int importFile(string filename, SleepData arr[], int size);
+//importing csv file
+int importFile(const string& filename, SleepData arr[], int size);
 
 
 
