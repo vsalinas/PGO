@@ -15,7 +15,9 @@ void analyze(SleepData arr[], int count){
 
     cout << "-----------------------------------------------------------------------";
 
-    cout << "\nStress And Sleep Levels:\n";
+    cout << "                 \nStress And Sleep Levels:\n\n";
+
+    cout << "-----------------------------------------------------------------------";
 
 
     for(int i = 0; i < count; i++){
