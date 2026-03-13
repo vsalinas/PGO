@@ -3,7 +3,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 
 OBJS = main.o importData.o assessData.o
 
-TARGET = program
+TARGET = PGO
 
 all: $(TARGET)
 
