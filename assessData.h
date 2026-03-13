@@ -5,10 +5,10 @@
 using namespace std;
 
 
-void analyze(SleepData data[], int count);
+void analyze(SleepData arr[], int count);
 
 
-void process(SleepData data[], int count);
+void process(SleepData arr[], int count);
 
 
 

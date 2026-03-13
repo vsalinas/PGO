@@ -7,7 +7,7 @@
 using namespace std;
 
 
-int importFile(string filename, SleepData data[], int size){
+int importFile(string filename, SleepData arr[], int size){
     ifstream file(filename);
     if(!file.is_open()){
         cout << "Unable to open file\n";
@@ -41,7 +41,7 @@ int importFile(string filename, SleepData data[], int size){
         getline(ss, temp, ',');
         d.stressLevel = stoi(temp);
 
-        data[count++] = d;
+        arr[count++] = d;
 
     }
 

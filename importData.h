@@ -6,7 +6,7 @@
 using namespace std;
 
 //importing file
-int importFile(string filename, SleepData data[], int size);
+int importFile(string filename, SleepData arr[], int size);
 
 
 
