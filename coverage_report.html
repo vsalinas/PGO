@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coverage Report</title>
+    <style>
+        body { font-family: monospace; }
+        .hit { color: green; }
+        .miss { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Coverage Report</h1>
+    <h2>main.cc</h2>
+    <pre>
+        -:    0:Source:main.cc
+
+        -:    1:#include <iostream>
+
+        -:    2:#include "importData.h"
+
+        -:    3:#include "assessData.h"
+
+        -:    4:
+
+        -:    5:using namespace std;
+
+        -:    6:
+
+        -:    7:
+
+        -:    8:
+
+        9:    9:int main(){
+
+        -:   10:    //loads the csv file
+
+    18009:   11:    SleepData arr[1000];
+
+        9:   12:    int count = importFile("sleep.csv", arr, 1000);
+
+        -:   13:
+
+        -:   14:    //print to confirm file loaded
+
+        9:   15:    cout << "File loaded successfully.\n";
+
+        -:   16:
+
+        -:   17:    //analyzes data
+
+        9:   18:    analyze(arr, count);
+
+        -:   19:
+
+        -:   20:    //process and run a test to see any interesting data
+
+        9:   21:    process(arr, count);
+
+        -:   22:
+
+        9:   23:    return 0;
+
+     9009:   24:}
+    </pre>
+    <h2>assessData.cc</h2>
+    <pre>
+        -:    0:Source:assessData.cc
+        -:    1:#include "assessData.h"
+        -:    2:#include <iostream>
+        -:    3:
+        -:    4:using namespace std;
+        -:    5:
+        -:    6:
+        9:    7:void analyze(SleepData arr[], int count){
+        9:    8:    double sleepTotal = 0;
+        -:    9:
+       19:   10:    for(int i = 0; i < count; i++){
+       10:   11:        sleepTotal += arr[i].sleepDuration;
+        -:   12:    }
+        -:   13:
+        9:   14:    cout << "Average time slept: " << (sleepTotal/count) << " hours\n";
+        -:   15:
+        9:   16:    cout << "-----------------------------------------------------------------------";
+        -:   17:
+        9:   18:    cout << "                 \nStress And Sleep Levels:\n\n";
+        -:   19:
+        9:   20:    cout << "-----------------------------------------------------------------------";
+        -:   21:
+        -:   22:
+       19:   23:    for(int i = 0; i < count; i++){
+       10:   24:        SleepData& d = arr[i];
+        -:   25:
+       10:   26:        string stress;
+       10:   27:        if(d.stressLevel > 5){
+        4:   28:            stress = "High Stress";
+        -:   29:        } else{
+        6:   30:            stress = "Low Stress";
+        -:   31:        }
+        -:   32:
+       10:   33:        string sleep;
+        -:   34:
+       10:   35:        if(d.sleepDuration < 6){
+        3:   36:            sleep = "Low Sleep";
+        -:   37:        } else {
+        7:   38:            sleep = "Good Sleep";
+        -:   39:        }
+        -:   40:
+        -:   41:        //will output occupation, levels of stress and sleep
+        -:   42:        //shows correlation
+       10:   43:        cout << d.occupation << ": " << stress << " + " << sleep << "\n";
+        -:   44:
+       10:   45:    }
+        -:   46:
+        9:   47:    cout << "-----------------------------------------------------------------------";
+        -:   48:
+        9:   49:}
+        -:   50:
+        9:   51:void process(SleepData arr[], int count){
+        9:   52:    long long sleepDebtTotal = 0;
+        9:   53:    long long sleepQuality = 0;
+        9:   54:    long long totalSleepScore = 0;
+        -:   55:
+        -:   56:    //heavy computation!!! > this is what makes our program run so long
+     9009:   57:    for(int year = 0; year < 1000; year++){
+        -:   58:
+    19000:   59:        for(int i = 0; i < count; i++){
+    10000:   60:            double baseSleep = arr[i].sleepDuration;
+    10000:   61:            int stressAmount = arr[i].stressLevel;
+    10000:   62:            int activity = arr[i].physicalActivity;
+    10000:   63:            int baseQuality = arr[i].sleepQuality;
+        -:   64:
+    10000:   65:            double sleepDebt = 0;
+        -:   66:
+        -:   67:            //multuply by 10 to change rating from 1-10 to 0-100
+    10000:   68:            double quality = baseQuality * 10.0;
+        -:   69:
+    10000:   70:            double deepSleep = 0;
+        -:   71:
+    10000:   72:            double totalSleep = 0;
+        -:   73:
+        -:   74:            //calculates one year -> 365 days of data
+  3660000:   75:            for(int day = 0; day < 365; day++){
+        -:   76:                //variation in sleep needed b/c people dont get the same amount of sleep everyday
+  3650000:   77:                double currentSleep = baseSleep + ((day % 3) - 1) * 0.5;
+        -:   78:                //variation of 0.5 hours
+        -:   79:
+        -:   80:                //cant have negative sleeps
+  3650000:   81:                if(currentSleep < 0){
+   122000:   82:                    currentSleep = 0;
+        -:   83:                }
+        -:   84:
+        -:   85:                //adds current sleep to the total amount of sleep so far
+  3650000:   86:                totalSleep += currentSleep;
+        -:   87:
+        -:   88:                // 7 hours is rec good, effective sleep
+  3650000:   89:                if(currentSleep < 7){
+        -:   90:                    //if less than 7 hrs sleep then they accumulate sleep debt
+        -:   91:                    //low sleep + high stress = more debt
+  1826000:   92:                    if(stressAmount > 5 ){
+   852000:   93:                        sleepDebt += (7 - currentSleep) * 1.6;
+   852000:   94:                        quality -= 0.4;
+        -:   95:                    } else {
+        -:   96:                        //low sleep + low stress = less debt
+   974000:   97:                        sleepDebt += (7 - currentSleep);
+   974000:   98:                        quality -= 0.2;
+        -:   99:                    }
+        -:  100:
+        -:  101:                } else {
+        -:  102:                    //more sleep + higher stress = less effective sleep
+  1824000:  103:                    if (stressAmount > 5){
+   608000:  104:                        sleepDebt -= 0.1;
+   608000:  105:                        quality += 0.1;
+        -:  106:                    } else {
+  1216000:  107:                        sleepDebt -= -0.3;
+  1216000:  108:                        quality += 0.3;
+        -:  109:                    }
+        -:  110:                }
+        -:  111:
+        -:  112:                //Physical activity and sleep relations
+  3650000:  113:                if(activity > 45){
+  1825000:  114:                    quality += 0.2;
+        -:  115:                    //more physical activity = higher quality sleep
+  1825000:  116:                } else if(activity < 15){
+  1095000:  117:                    quality -= 0.2; //less physical acvitiy = less quality sleep
+        -:  118:                }
+        -:  119:
+        -:  120:                //Stress and sleep relation
+  3650000:  121:                if (stressAmount > 5){
+  1460000:  122:                    deepSleep += currentSleep * 0.6;
+        -:  123:                } else {
+  2190000:  124:                    deepSleep += currentSleep * 0.85;
+        -:  125:                }
+        -:  126:
+        -:  127:                //these prevent impossible numbers
+        -:  128:                //cant have negative sleep debt, quality and more than 100 quality
+  3650000:  129:                if (sleepDebt < 0){
+   365000:  130:                    sleepDebt = 0;
+        -:  131:                }
+        -:  132:
+  3650000:  133:                if(quality < 0){
+   995000:  134:                    quality = 0;
+        -:  135:                }
+        -:  136:
+  3650000:  137:                if(quality > 100){
+   926000:  138:                    quality = 100;
+        -:  139:                }
+        -:  140:
+        -:  141:            }
+        -:  142:
+        -:  143:            //finds how effective sleep is overall
+    10000:  144:            double effectiveSleep = deepSleep / totalSleep;
+        -:  145:
+        -:  146:            //getting totals after running computations
+    10000:  147:            sleepDebtTotal += (long long)sleepDebt;
+    10000:  148:            sleepQuality += (long long)quality;
+    10000:  149:            totalSleepScore += (long long)(effectiveSleep * 1000);
+        -:  150:
+        -:  151:        }
+        -:  152:
+        -:  153:
+        -:  154:    }
+        -:  155:
+        9:  156:    cout << "\n--------------------------------------------------\n";
+        9:  157:    cout << "            Sleep and Lifestyle Findings            \n";
+        9:  158:    cout << "\n--------------------------------------------------\n";
+        -:  159:
+        9:  160:    cout << "Total Sleep Debt: \t" << sleepDebtTotal << "\n";
+        9:  161:    cout << "Total Sleep Quality: \t" << sleepQuality << "\n";
+        9:  162:    cout << "Total Restorative Sleep: \t" << totalSleepScore << "\n";
+        -:  163:
+        -:  164:
+        -:  165:
+        9:  166:}
+    </pre>
+    <h2>importData.cc</h2>
+    <pre>
+        -:    0:Source:importData.cc
+
+        -:    1://this file uses iostream and sstream to grab the data from the CSV file
+
+        -:    2:
+
+        -:    3:#include "importData.h"
+
+        -:    4:#include <fstream>
+
+        -:    5:#include <iostream>
+
+        -:    6:#include <sstream>
+
+        -:    7:using namespace std;
+
+        -:    8:
+
+        -:    9:
+
+        9:   10:int importFile(const string& filename, SleepData arr[], int size){
+
+        9:   11:    ifstream file(filename);
+
+        9:   12:    if(!file.is_open()){
+
+        1:   13:        cout << "Unable to open file\n";
+
+        1:   14:        return 0;
+
+        -:   15:    }
+
+        -:   16:
+
+        8:   17:    string line;
+
+        8:   18:    getline(file, line);
+
+        -:   19:
+
+        8:   20:    int count = 0;
+
+        -:   21:
+
+        -:   22:    //parsing the csv file
+
+       18:   23:    while (getline(file, line) && count < size){
+
+       10:   24:        stringstream ss(line);
+
+       10:   25:        SleepData d;
+
+       10:   26:        string temp;
+
+        -:   27:
+
+       10:   28:        getline(ss, temp, ','); //Person ID gets ignored
+
+        -:   29:
+
+       10:   30:        getline(ss, d.gender, ',');
+
+       10:   31:        getline(ss, temp, ',');
+
+       10:   32:        d.age = stoi(temp);
+
+       10:   33:        getline(ss, d.occupation, ',');
+
+       10:   34:        getline(ss, temp, ',');
+
+       10:   35:        d.sleepDuration = stod(temp);
+
+        -:   36:
+
+       10:   37:        getline(ss, temp, ',');
+
+       10:   38:        d.sleepQuality = stoi(temp);
+
+        -:   39:
+
+       10:   40:        getline(ss, temp, ',');
+
+       10:   41:        d.physicalActivity = stoi(temp);
+
+        -:   42:
+
+       10:   43:        getline(ss, temp, ',');
+
+       10:   44:        d.stressLevel = stoi(temp);
+
+        -:   45:
+
+       10:   46:        string skip;
+
+        -:   47:
+
+        -:   48:
+
+        -:   49:        //unused data
+
+       10:   50:        getline(ss, skip, ','); // BMI
+
+       10:   51:        getline(ss, skip, ','); // Blood Pressure
+
+       10:   52:        getline(ss, skip, ','); // Heart Rate
+
+       10:   53:        getline(ss, skip, ','); // Daily Steps
+
+       10:   54:        getline(ss, skip, ','); // Sleep Disorder
+
+        -:   55:
+
+        -:   56:
+
+       10:   57:        arr[count++] = d;
+
+        -:   58:
+
+       10:   59:    }
+
+        -:   60:
+
+        8:   61:    return count;
+
+        -:   62:
+
+        -:   63:
+
+        9:   64:}
+    </pre>
+</body>
+</html>
