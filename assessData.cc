@@ -78,8 +78,8 @@ void process(SleepData arr[], int count){
                 //variation of 0.5 hours
 
                 //cant have negative sleeps
-                [[unlikely]]
                 if(currentSleep < 0){
+                    [[unlikely]]
                     currentSleep = 0;
                 }
 
@@ -87,14 +87,16 @@ void process(SleepData arr[], int count){
                 totalSleep += currentSleep;
 
                 // 7 hours is rec good, effective sleep
-                [[likely]]
                 if(currentSleep < 7){
+                    [[likely]]
                     //if less than 7 hrs sleep then they accumulate sleep debt
                     //low sleep + high stress = more debt
                     if(stressAmount > 5 ){
+                        [[likely]]
                         sleepDebt += (7 - currentSleep) * 1.6;
                         quality -= 0.4;
                     } else {
+                        [[likely]]
                         //low sleep + low stress = less debt
                         sleepDebt += (7 - currentSleep);
                         quality -= 0.2;
@@ -102,44 +104,47 @@ void process(SleepData arr[], int count){
 
                 } else {
                     //more sleep + higher stress = less effective sleep
-                    [[likely]]
                     if (stressAmount > 5){
+                        [[likely]]
                         sleepDebt -= 0.1;
                         quality += 0.1;
                     } else {
+                        [[likely]]
                         sleepDebt -= -0.3;
                         quality += 0.3;
                     }
                 }
                 //Physical activity and sleep relations
-                [[likely]]
                 if(activity > 45){
+                    [[likely]]
                     quality += 0.2;
                     //more physical activity = higher quality sleep
                 } else if(activity < 15){
+                    [[likely]]
                     quality -= 0.2; //less physical acvitiy = less quality sleep
                 }
 
                 //Stress and sleep relation
-                [[likely]]
                 if (stressAmount > 5){
+                    [[likely]]
                     deepSleep += currentSleep * 0.6;
                 } else {
+                    [[likely]]
                     deepSleep += currentSleep * 0.85;
                 }
 
                 //these prevent impossible numbers
                 //cant have negative sleep debt, quality and more than 100 quality
-                [[unlikely]]
                 if (sleepDebt < 0){
+                    [[unlikely]]
                     sleepDebt = 0;
                 }
-                [[unlikely]]
                 if(quality < 0){
+                    [[unlikely]]
                     quality = 0;
                 }
-                [[unlikely]]
                 if(quality > 100){
+                    [[unlikely]]
                     quality = 100;
                 }
 
