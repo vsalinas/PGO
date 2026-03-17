@@ -1,0 +1,25 @@
+        -:    0:Source:main.cc
+        -:    1:#include <iostream>
+        -:    2:#include "importData.h"
+        -:    3:#include "assessData.h"
+        -:    4:
+        -:    5:using namespace std;
+        -:    6:
+        -:    7:
+        -:    8:
+        9:    9:int main(){
+        -:   10:    //loads the csv file
+    18009:   11:    SleepData arr[1000];
+        9:   12:    int count = importFile("sleep.csv", arr, 1000);
+        -:   13:
+        -:   14:    //print to confirm file loaded
+        9:   15:    cout << "File loaded successfully.\n";
+        -:   16:
+        -:   17:    //analyzes data
+        9:   18:    analyze(arr, count);
+        -:   19:
+        -:   20:    //process and run a test to see any interesting data
+        9:   21:    process(arr, count);
+        -:   22:
+        9:   23:    return 0;
+     9009:   24:}
