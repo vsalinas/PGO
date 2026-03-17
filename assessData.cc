@@ -96,7 +96,7 @@ void process(SleepData arr[], int count){
                         sleepDebt += (7 - currentSleep) * 1.6;
                         quality -= 0.4;
                     } else {
-                        [[likely]]
+                        [[unlikely]]
                         //low sleep + low stress = less debt
                         sleepDebt += (7 - currentSleep);
                         quality -= 0.2;
@@ -109,7 +109,7 @@ void process(SleepData arr[], int count){
                         sleepDebt -= 0.1;
                         quality += 0.1;
                     } else {
-                        [[likely]]
+                        [[unlikely]]
                         sleepDebt -= -0.3;
                         quality += 0.3;
                     }
@@ -120,7 +120,7 @@ void process(SleepData arr[], int count){
                     quality += 0.2;
                     //more physical activity = higher quality sleep
                 } else if(activity < 15){
-                    [[likely]]
+                    [[unlikely]]
                     quality -= 0.2; //less physical acvitiy = less quality sleep
                 }
 
@@ -129,7 +129,7 @@ void process(SleepData arr[], int count){
                     [[likely]]
                     deepSleep += currentSleep * 0.6;
                 } else {
-                    [[likely]]
+                    [[unlikely]]
                     deepSleep += currentSleep * 0.85;
                 }
 
