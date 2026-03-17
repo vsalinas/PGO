@@ -46,7 +46,7 @@ int importFile(const string& filename, SleepData arr[], int size){
         string skip;
 
 
-        //unused data
+        //unused data but still need to parce to get data from .csv file
         getline(ss, skip, ','); // BMI
         getline(ss, skip, ','); // Blood Pressure
         getline(ss, skip, ','); // Heart Rate

@@ -78,6 +78,7 @@ void process(SleepData arr[], int count){
                 //variation of 0.5 hours
 
                 //cant have negative sleeps
+                [[unlikely]]
                 if(currentSleep < 0){
                     currentSleep = 0;
                 }
@@ -86,6 +87,7 @@ void process(SleepData arr[], int count){
                 totalSleep += currentSleep;
 
                 // 7 hours is rec good, effective sleep
+                [[likely]]
                 if(currentSleep < 7){
                     //if less than 7 hrs sleep then they accumulate sleep debt
                     //low sleep + high stress = more debt
@@ -100,6 +102,7 @@ void process(SleepData arr[], int count){
 
                 } else {
                     //more sleep + higher stress = less effective sleep
+                    [[likely]]
                     if (stressAmount > 5){
                         sleepDebt -= 0.1;
                         quality += 0.1;
@@ -108,8 +111,8 @@ void process(SleepData arr[], int count){
                         quality += 0.3;
                     }
                 }
-
                 //Physical activity and sleep relations
+                [[likely]]
                 if(activity > 45){
                     quality += 0.2;
                     //more physical activity = higher quality sleep
@@ -118,6 +121,7 @@ void process(SleepData arr[], int count){
                 }
 
                 //Stress and sleep relation
+                [[likely]]
                 if (stressAmount > 5){
                     deepSleep += currentSleep * 0.6;
                 } else {
@@ -126,14 +130,15 @@ void process(SleepData arr[], int count){
 
                 //these prevent impossible numbers
                 //cant have negative sleep debt, quality and more than 100 quality
+                [[unlikely]]
                 if (sleepDebt < 0){
                     sleepDebt = 0;
                 }
-
+                [[unlikely]]
                 if(quality < 0){
                     quality = 0;
                 }
-
+                [[unlikely]]
                 if(quality > 100){
                     quality = 100;
                 }
