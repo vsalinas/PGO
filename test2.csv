@@ -1,2 +1,4 @@
 Person ID,Gender,Age,Occupation,Sleep Duration,Quality of Sleep,Physical Activity Level,Stress Level,BMI Category,Blood Pressure,Heart Rate,Daily Steps,Sleep Disorder
 1,Female,25,Teacher,7.5,8,50,3,Normal,115/75,68,7000,None
+2,Male,30,Doctor,0.3,1,10,8,Normal,120/80,70,8000,None
+3,Female,30,Nurse,9,0,9,80,1,Normal,120/80,70,8000,None
