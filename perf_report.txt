@@ -1,0 +1,90 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 2K of event 'cycles:Pu'
+# Event count (approx.): 1351028588
+#
+# Children      Self  Command  Shared Object          Symbol                                                                                                                                                                                                                                                              
+# ........  ........  .......  .....................  ....................................................................................................................................................................................................................................................................
+#
+    99.92%     0.00%  a.out    a.out                  [.] _start
+            |
+            ---_start
+               __libc_start_main
+               0x7ffecb6b221c
+               main
+               |          
+                --99.82%--process(SleepData*, int)
+
+    99.92%     0.00%  a.out    libc.so.6              [.] __libc_start_main
+            |
+            ---__libc_start_main
+               0x7ffecb6b221c
+               main
+               |          
+                --99.82%--process(SleepData*, int)
+
+    99.92%     0.00%  a.out    libc.so.6              [.] 0x00007ffecb6b221c
+            |
+            ---0x7ffecb6b221c
+               main
+               |          
+                --99.82%--process(SleepData*, int)
+
+    99.92%     0.00%  a.out    a.out                  [.] main
+            |
+            ---main
+               |          
+                --99.82%--process(SleepData*, int)
+
+    99.82%    99.82%  a.out    a.out                  [.] process(SleepData*, int)
+            |
+            ---_start
+               __libc_start_main
+               0x7ffecb6b221c
+               main
+               process(SleepData*, int)
+
+     0.08%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb47194
+     0.08%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb43248
+     0.08%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb41e68
+     0.08%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb44bc4
+     0.08%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb3a268
+     0.08%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb38f80
+     0.08%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb351b4
+     0.05%     0.05%  a.out    ld-linux-aarch64.so.1  [.] 0x00000000000089a4
+     0.05%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb349a4
+     0.05%     0.05%  a.out    libstdc++.so.6.0.33    [.] std::istream::sentry::sentry(std::istream&, bool)
+     0.05%     0.00%  a.out    a.out                  [.] importFile(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, SleepData*, int)
+     0.05%     0.00%  a.out    libstdc++.so.6.0.33    [.] std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char)
+     0.05%     0.05%  a.out    libc.so.6              [.] 0x00000000000a3054
+     0.05%     0.00%  a.out    a.out                  [.] analyze(SleepData*, int)
+     0.05%     0.00%  a.out    libstdc++.so.6.0.33    [.] std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+     0.05%     0.00%  a.out    libc.so.6              [.] _IO_fwrite
+     0.05%     0.00%  a.out    libc.so.6              [.] _IO_file_xsputn
+     0.05%     0.00%  a.out    libc.so.6              [.] 0x00007ffecb733054
+     0.03%     0.03%  a.out    ld-linux-aarch64.so.1  [.] 0x0000000000008994
+     0.03%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb34994
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x0000000000017ed0
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb43e8b
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb43ed0
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb47193
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x0000000000016d14
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb42d14
+     0.00%     0.00%  a.out    [unknown]              [.] 0xffffd06fce411550
+     0.00%     0.00%  a.out    [unknown]              [k] 0xffffd06fcf1df58c
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb42ccc
+     0.00%     0.00%  a.out    [unknown]              [.] 0xffffd06fcf1e01c4
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x0000000000016c90
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb42c90
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x00007ffecbb47180
+     0.00%     0.00%  a.out    ld-linux-aarch64.so.1  [.] 0x000000000001b180
+     0.00%     0.00%  a.out    [unknown]              [k] 0xffffd06fcf1dfbb8
+     0.00%     0.00%  a.out    [unknown]              [.] 0xffffd06fcf1e01dc
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
